@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import "./index.css";
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -48,20 +49,28 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>Real-Time Search with Debouncing</h1>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={handleChange}
-        placeholder="Search for fruits..."
-      />
-      {isSearching && <p>Searching...</p>}
-      <ul>
-        {results.map((result, index) => (
-          <li key={index}>{result}</li>
-        ))}
-      </ul>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
+      <h1 className="text-4xl font-bold mb-6 text-blue-600">Real-Time Search with Debouncing</h1>
+      <div className="w-full max-w-md">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleChange}
+          placeholder="Search for fruits..."
+          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-md"
+        />
+        {isSearching && <p className="text-gray-500 mt-2">Searching...</p>}
+        <ul className="mt-4 bg-white shadow-lg rounded-lg">
+          {results.map((result, index) => (
+            <li
+              key={index}
+              className="p-3 hover:bg-gray-100 border-b last:border-none"
+            >
+              {result}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
